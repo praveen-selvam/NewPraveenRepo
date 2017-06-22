@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+    xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext"
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.0.xsd
+        http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd">
+
+    <changeSet id="1" author="praveens@intentsg.com">
+        <createTable tableName="ROLE">
+            <column name="ID" type="BIGINT" autoIncrement="true">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="PK_ROLE"/>
+            </column>
+            <column name="ROLE_NAME" type="VARCHAR(240)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="CUSTOMER" type="VARCHAR(240)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="DESCRIPTION" type="VARCHAR(240)">
+                <constraints nullable="true"/>
+            </column>
+            
+            <column name="CREATED_BY" type="BIGINT"  >
+                <constraints nullable="false"/>
+            </column>
+            <column name="CREATED_TIMESTAMP" type="TIMESTAMP"
+                    defaultValueComputed="CURRENT_TIMESTAMP">
+                <constraints nullable="false"/>
+            </column>
+            <column name="MODIFIED_BY" type="BIGINT"/>
+            
+            <column name="MODIFIED_TIMESTAMP" type="TIMESTAMP"
+                    defaultValueComputed="CURRENT_TIMESTAMP">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+
+        <createIndex tableName="ROLE"
+                     indexName="IDX01_ROLE"
+                     unique="true">
+            <column name="ROLE_NAME"/>
+            <column name="CUSTOMER"/>
+        </createIndex>
+        
+    
+
+        <addForeignKeyConstraint baseTableName="ROLE"
+                                 baseColumnNames="CREATED_BY"
+                                 constraintName="FK01_ROLE"
+                                 referencedTableName="USER"
+                                 referencedColumnNames="ID"
+                                 onDelete="RESTRICT"
+                                 onUpdate="RESTRICT" />
+        
+        <addForeignKeyConstraint baseTableName="ROLE"
+                                 baseColumnNames="MODIFIED_BY"
+                                 constraintName="FK02_ROLE"
+                                 referencedTableName="USER"
+                                 referencedColumnNames="ID"
+                                 onDelete="RESTRICT"
+                                 onUpdate="RESTRICT" />
+    </changeSet>
+    <changeSet id="2" author="praveens@intentsg.com">
+        <insert tableName="ROLE">
+            <column name="ROLE_NAME" value="Admin"/>
+            <column name="CUSTOMER" value="1"/>
+            <column name="DESCRIPTION" value="This Is Test Description"/>
+            <column name="CREATED_BY" value="1"/>
+        </insert>
+    </changeSet>
+  
+  
+</databaseChangeLog>

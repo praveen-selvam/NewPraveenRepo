@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+    xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext"
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.0.xsd
+        http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd">
+
+    <changeSet id="1" author="jmcpherson@intentsg.com">
+        <createTable tableName="USER">
+            <column name="ID" type="BIGINT" autoIncrement="true">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="PK_USER"/>
+            </column>
+            <column name="USERNAME" type="VARCHAR(64)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="PASSWORD" type="VARCHAR(128)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="PASSWORD_TIMESTAMP" type="TIMESTAMP"
+                    defaultValueComputed="CURRENT_TIMESTAMP">
+                <constraints nullable="false"/>
+            </column>
+            <column name="FIRST_NAME" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="LAST_NAME" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="CREATED_BY" type="BIGINT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="CREATED_TIMESTAMP" type="TIMESTAMP"
+                    defaultValueComputed="CURRENT_TIMESTAMP">
+                <constraints nullable="false"/>
+            </column>
+            <column name="MODIFIED_BY" type="BIGINT"/>
+            <column name="MODIFIED_TIMESTAMP" type="TIMESTAMP"/>
+        </createTable>
+
+        <createIndex tableName="USER"
+                     indexName="IDX01_USER"
+                     unique="true">
+            <column name="USERNAME"/>
+        </createIndex>
+
+        <addForeignKeyConstraint baseTableName="USER"
+                                 baseColumnNames="CREATED_BY"
+                                 constraintName="FK01_USER"
+                                 referencedTableName="USER"
+                                 referencedColumnNames="ID"
+                                 onDelete="RESTRICT"
+                                 onUpdate="RESTRICT" />
+        <addForeignKeyConstraint baseTableName="USER"
+                                 baseColumnNames="MODIFIED_BY"
+                                 constraintName="FK02_USER"
+                                 referencedTableName="USER"
+                                 referencedColumnNames="ID"
+                                 onDelete="RESTRICT"
+                                 onUpdate="RESTRICT" />
+    </changeSet>
+
+    <changeSet id="2" author="jmcpherson@intentsg.com">
+        <insert tableName="USER">
+            <column name="USERNAME" value="autotrek"/>
+            <column name="PASSWORD" value="$2a$04$iQst0BFdX2U8fs2iZChS5eu/GOa.An7t0e0SQB4ZvNo7DEY/a2y0a"/>
+            <column name="FIRST_NAME" value="System"/>
+            <column name="LAST_NAME" value="Admin"/>
+            <column name="CREATED_BY" value="1"/>
+        </insert>
+    </changeSet>
+</databaseChangeLog>
