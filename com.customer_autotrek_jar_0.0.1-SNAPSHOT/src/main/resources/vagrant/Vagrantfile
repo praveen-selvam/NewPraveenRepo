@@ -1,0 +1,24 @@
+Vagrant.configure("2") do |config|
+
+  config.vm.box = "bento/centos-7.3"
+  
+  config.vm.hostname = "atlocalvm"
+
+  config.vm.network "forwarded_port", guest: 3306, host: 3306  # Opened for Mysql
+
+  config.vm.network "forwarded_port", guest: 8080, host: 8080 # Used for Application Servers
+  
+  config.vm.provider "virtualbox" do |vb|
+    # Display the VirtualBox GUI when booting the machine
+    vb.gui = false
+  
+    # Customize the amount of memory on the VM:
+    vb.memory = "1024"
+	
+	# Let's have a common name.
+    vb.name = "AT Local VM Envi"
+  end
+  
+  config.vm.provision "shell", path: "vagrant_provision.sh"
+  
+end
