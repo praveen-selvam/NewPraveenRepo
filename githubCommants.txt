@@ -1,0 +1,30 @@
+create a new repository on the command line
+
+echo "# NewPraveenRepo" >> README.md
+git init
+git add README.md
+git commit -m "first commit"
+git remote add origin https://github.com/praveen-selvam/NewPraveenRepo.git
+git push -u origin master
+
+GIT HUB COMMANDS
+----------------- 
+prompt> git remote add origin https://github.com/MonamiTech/AutoTrek.git
+
+prompt> git init   (To create a empty git repository.)
+
+prompt> git status  (To check the status of modified files.)
+
+prompt> git add filename   (To add the file)
+
+prompt> git commit -m "AT-Number comment"   (To commit the file)
+
+prompt> git push -u origin "Branchname"   (Push local to remote server)
+
+prompt> git pull origin "Branchname"   (Pull remote to local)
+
+prompt> git push --force origin "Branchname"   (To fetch)
+
+prompt> git checkout -b development master   (To create the new branch from master)
+
+prompt> git clone <repo url from github>    (To get backup from server)
