@@ -1,0 +1,39 @@
+<databaseChangeLog 
+    xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+    xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog-ext
+   http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd 
+   http://www.liquibase.org/xml/ns/dbchangelog 
+   http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.4.xsd">
+     
+    <changeSet author="John" id="someUniqueId">
+        <addColumn tableName="users">
+            <column name="address" type="varchar(255)" />
+        </addColumn>
+    </changeSet>
+    
+    <createTable tableName="AT_DELEARS">
+        <column name="AT_ID" type="BIGINT" autoIncrement="true">
+            <constraints primaryKey="true" nullable="false"/>
+        </column>
+        <column name="AD_CODE" type="java.sql.Types.VARCHAR(255)">
+            <constraints nullable="false"/>
+        </column>    
+        <column name="AD_NAME" type="java.sql.Types.VARCHAR(255)">
+            <constraints nullable="false"/>
+        </column>    
+        <column name="AD_CONTACT_NAME" type="java.sql.Types.VARCHAR(255)"/>
+        <column name="AD_EMAIL_ID" type="java.sql.Types.VARCHAR(255)">
+            <constraints nullable="false"/>
+        </column>    
+        <column name="AD_MOBILE" type="java.sql.Types.VARCHAR(255)">
+            <constraints nullable="false"/>
+        </column>    
+        <column name="AD_OFFICE_ADDR" type="java.sql.Types.VARCHAR(255)"/>
+        <column name="AD_DESIGNATION" type="java.sql.Types.VARCHAR(255)"/>
+        <column name="AD_IQAMA_NO" type="java.sql.Types.VARCHAR(255)"/>
+        <column name="AD_LOGO_PATH" type="java.sql.Types.VARCHAR(255)"/>
+    </createTable>
+     
+</databaseChangeLog>
